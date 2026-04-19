@@ -22,6 +22,7 @@ import Theme from "./pages/settings/Theme";
 export default function App() {
   return (
     <Routes>
+      {/* AUTH PUBLIC */}
       <Route element={<AuthLayout />}>
         <Route path="/" element={<Navigate to={"/login"} />} />
 
@@ -30,11 +31,14 @@ export default function App() {
         <Route path="/logout" element={<Logout />} />
       </Route>
 
+      {/* Logged in user only */}
       <Route element={<ProtectedRoute />}>
+        {/* MainLayout = have Sidebar */}
         <Route element={<MainLayout />}>
           <Route path="/home" element={<Home />} />
         </Route>
 
+        {/* BaseLayout = no have sidebar */}
         <Route element={<BaseLayout />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:id" element={<Profile />} />
